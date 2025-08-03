@@ -14,15 +14,23 @@ public class TryHibernate {
         student1.setsName("Mupfururirwa");
         student1.setMarks(100);
 
-        Configuration cfg = new Configuration();
-        cfg.addAnnotatedClass(inc.sims.hustles.Student.class);
-        cfg.configure();
+        Teacher teacher1 = new Teacher();
+        teacher1.settId(1);
+        teacher1.setSubject("Mathematics");
+        teacher1.setNumberOfStudents(40);
+
+        Configuration cfg = new Configuration()
+                .addAnnotatedClass(inc.sims.hustles.Student.class)
+                .addAnnotatedClass(inc.sims.hustles.Teacher.class)
+                .configure();
         SessionFactory sf = cfg.buildSessionFactory();
         Session session = sf.openSession();
         Transaction transaction = session.beginTransaction();
-        session.persist(student1);
+        session.persist(teacher1);
         transaction.commit();
+        session.close();
+        sf.close();
 
-        System.out.println(student1);
+        System.out.println(teacher1);
     }
 }
