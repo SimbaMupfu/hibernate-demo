@@ -9,6 +9,21 @@ public class TryHibernate {
 
     public static void main(String[] args){
 
+        Configuration cfg = new Configuration()
+                .addAnnotatedClass(inc.sims.hustles.Student.class)
+                .addAnnotatedClass(inc.sims.hustles.Teacher.class)
+                .configure();
+        SessionFactory sf = cfg.buildSessionFactory();
+        Session session = sf.openSession();
+//        saveData(session);
+        retrieveData(session);
+        session.close();
+        sf.close();
+
+
+    }
+
+    private static void saveData(Session session){
         Student student1 = new Student();
         student1.setsId(13);
         student1.setsName("Mupfururirwa");
@@ -19,18 +34,16 @@ public class TryHibernate {
         teacher1.setSubject("Mathematics");
         teacher1.setNumberOfStudents(40);
 
-        Configuration cfg = new Configuration()
-                .addAnnotatedClass(inc.sims.hustles.Student.class)
-                .addAnnotatedClass(inc.sims.hustles.Teacher.class)
-                .configure();
-        SessionFactory sf = cfg.buildSessionFactory();
-        Session session = sf.openSession();
         Transaction transaction = session.beginTransaction();
         session.persist(teacher1);
         transaction.commit();
-        session.close();
-        sf.close();
 
         System.out.println(teacher1);
+    }
+
+    private static void retrieveData(Session session){
+        Student student;
+        student = session.find(Student.class, 6);
+        System.out.println(student);
     }
 }
