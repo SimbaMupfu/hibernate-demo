@@ -10,8 +10,8 @@ public class TryHibernate {
     public static void main(String[] args){
 
         Student student1 = new Student();
-        student1.setsId(10);
-        student1.setsName("Jenifa");
+        student1.setsId(13);
+        student1.setsName("Mupfururirwa");
         student1.setMarks(100);
 
         Configuration cfg = new Configuration();
