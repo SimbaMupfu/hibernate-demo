@@ -17,7 +17,8 @@ public class TryHibernate {
         Session session = sf.openSession();
 //        saveData(session);
 //        retrieveData(session);
-        updateData(session);
+//        updateData(session);
+        deleteData(session);
         session.close();
         sf.close();
 
@@ -55,14 +56,23 @@ public class TryHibernate {
         student1.setMarks(100);
 
         Teacher teacher1 = new Teacher();
-        teacher1.settId(1);
-        teacher1.setSubject("Mathematics");
-        teacher1.setNumberOfStudents(38);
+        teacher1.settId(2);
+        teacher1.setSubject("English");
+        teacher1.setNumberOfStudents(39);
 
         Transaction transaction = session.beginTransaction();
         session.merge(teacher1);
         transaction.commit();
 
         System.out.println(teacher1);
+    }
+
+    private static void deleteData(Session session){
+        Student student = session.find(Student.class, 13);
+        Transaction transaction = session.beginTransaction();
+        session.remove(student);
+        transaction.commit();
+
+        System.out.println(student.getsName() + "deleted successfully!!!");
     }
 }
