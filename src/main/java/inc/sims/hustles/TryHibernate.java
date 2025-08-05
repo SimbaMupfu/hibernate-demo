@@ -16,7 +16,8 @@ public class TryHibernate {
         SessionFactory sf = cfg.buildSessionFactory();
         Session session = sf.openSession();
 //        saveData(session);
-        retrieveData(session);
+//        retrieveData(session);
+        updateData(session);
         session.close();
         sf.close();
 
@@ -45,5 +46,23 @@ public class TryHibernate {
         Student student;
         student = session.find(Student.class, 6);
         System.out.println(student);
+    }
+
+    private static void updateData(Session session){
+        Student student1 = new Student();
+        student1.setsId(13);
+        student1.setsName("Mupfururirwa");
+        student1.setMarks(100);
+
+        Teacher teacher1 = new Teacher();
+        teacher1.settId(1);
+        teacher1.setSubject("Mathematics");
+        teacher1.setNumberOfStudents(38);
+
+        Transaction transaction = session.beginTransaction();
+        session.merge(teacher1);
+        transaction.commit();
+
+        System.out.println(teacher1);
     }
 }
