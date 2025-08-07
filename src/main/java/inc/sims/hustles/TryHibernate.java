@@ -37,10 +37,16 @@ public class TryHibernate {
         teacher1.setSubject("Mathematics");
         teacher1.setNumberOfStudents(40);
 
+        Laptop laptop = new Laptop();
+        laptop.setBrand("MacBook Pro");
+        laptop.setModel("M2");
+        laptop.setRam(8);
+
         Club club = new Club();
         club.setCid(1);
         club.setClubName("Rotary club");
         club.setTech("Social Platform");
+        club.setLaptop(laptop);
 
         Transaction transaction = session.beginTransaction();
         session.persist(club);

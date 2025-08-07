@@ -9,9 +9,10 @@ public class Club {
     private int cid;
     @Column(name = "club_name")
     private String clubName;
-
-    @Transient
+    @Column(name = "tech")
     private String tech;
+    @Column(name = "laptop_details")
+    private Laptop laptop;
 
     public int getCid() {
         return cid;
@@ -37,12 +38,21 @@ public class Club {
         this.tech = tech;
     }
 
+    public Laptop getLaptop() {
+        return laptop;
+    }
+
+    public void setLaptop(Laptop laptop) {
+        this.laptop = laptop;
+    }
+
     @Override
     public String toString() {
         return "Club{" +
                 "cid=" + cid +
                 ", clubName='" + clubName + '\'' +
                 ", tech='" + tech + '\'' +
+                ", laptop=" + laptop +
                 '}';
     }
 }
