@@ -12,13 +12,14 @@ public class TryHibernate {
         Configuration cfg = new Configuration()
                 .addAnnotatedClass(inc.sims.hustles.Student.class)
                 .addAnnotatedClass(inc.sims.hustles.Teacher.class)
+                .addAnnotatedClass(inc.sims.hustles.Club.class)
                 .configure();
         SessionFactory sf = cfg.buildSessionFactory();
         Session session = sf.openSession();
-//        saveData(session);
+        saveData(session);
 //        retrieveData(session);
 //        updateData(session);
-        deleteData(session);
+//        deleteData(session);
         session.close();
         sf.close();
 
@@ -36,11 +37,16 @@ public class TryHibernate {
         teacher1.setSubject("Mathematics");
         teacher1.setNumberOfStudents(40);
 
+        Club club = new Club();
+        club.setCid(1);
+        club.setClubName("Rotary club");
+        club.setTech("Social Platform");
+
         Transaction transaction = session.beginTransaction();
-        session.persist(teacher1);
+        session.persist(club);
         transaction.commit();
 
-        System.out.println(teacher1);
+        System.out.println(club);
     }
 
     private static void retrieveData(Session session){
