@@ -2,6 +2,8 @@ package inc.sims.hustles;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "club_table")
 public class Club {
@@ -11,8 +13,8 @@ public class Club {
     private String clubName;
     @Column(name = "tech")
     private String tech;
-    @Column(name = "laptop_details")
-    private Laptop laptop;
+    @OneToMany
+    private List<Laptop> laptops;
 
     public int getCid() {
         return cid;
@@ -38,12 +40,12 @@ public class Club {
         this.tech = tech;
     }
 
-    public Laptop getLaptop() {
-        return laptop;
+    public List<Laptop> getLaptops() {
+        return laptops;
     }
 
-    public void setLaptop(Laptop laptop) {
-        this.laptop = laptop;
+    public void setLaptops(List<Laptop> laptops) {
+        this.laptops = laptops;
     }
 
     @Override
@@ -52,7 +54,7 @@ public class Club {
                 "cid=" + cid +
                 ", clubName='" + clubName + '\'' +
                 ", tech='" + tech + '\'' +
-                ", laptop=" + laptop +
+                ", laptops=" + laptops +
                 '}';
     }
 }

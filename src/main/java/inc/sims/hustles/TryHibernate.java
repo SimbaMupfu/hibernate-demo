@@ -5,6 +5,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import java.util.List;
+
 public class TryHibernate {
 
     public static void main(String[] args){
@@ -13,6 +15,7 @@ public class TryHibernate {
                 .addAnnotatedClass(inc.sims.hustles.Student.class)
                 .addAnnotatedClass(inc.sims.hustles.Teacher.class)
                 .addAnnotatedClass(inc.sims.hustles.Club.class)
+                .addAnnotatedClass(inc.sims.hustles.Laptop.class)
                 .configure();
         SessionFactory sf = cfg.buildSessionFactory();
         Session session = sf.openSession();
@@ -38,21 +41,28 @@ public class TryHibernate {
         teacher1.setNumberOfStudents(40);
 
         Laptop laptop = new Laptop();
+        laptop.setLaptopId(1);
         laptop.setBrand("MacBook Pro");
         laptop.setModel("M2");
         laptop.setRam(8);
 
+        Laptop workLaptop = new Laptop();
+        workLaptop.setLaptopId(2);
+        workLaptop.setBrand("MacBook Pro");
+        workLaptop.setModel("M1");
+        workLaptop.setRam(16);
+
         Club club = new Club();
-        club.setCid(1);
+        club.setCid(101);
         club.setClubName("Rotary club");
-        club.setTech("Social Platform");
-        club.setLaptop(laptop);
+        club.setTech("Java");
+        club.setLaptops(List.of(laptop, workLaptop));
 
         Transaction transaction = session.beginTransaction();
+        session.persist(laptop);
+        session.persist(workLaptop);
         session.persist(club);
         transaction.commit();
-
-        System.out.println(club);
     }
 
     private static void retrieveData(Session session){

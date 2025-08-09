@@ -1,13 +1,27 @@
 package inc.sims.hustles;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
-@Embeddable
+@Entity
 public class Laptop {
 
+    @Id
+    @Column(name = "laptop_id")
+    private int laptopId;
     private String brand;
     private String Model;
     private int ram;
+
+    public int getLaptopId() {
+        return laptopId;
+    }
+
+    public void setLaptopId(int laptopId) {
+        this.laptopId = laptopId;
+    }
 
     public String getBrand() {
         return brand;
@@ -36,7 +50,8 @@ public class Laptop {
     @Override
     public String toString() {
         return "Laptop{" +
-                "brand='" + brand + '\'' +
+                "laptopId=" + laptopId +
+                ", brand='" + brand + '\'' +
                 ", Model='" + Model + '\'' +
                 ", ram=" + ram +
                 '}';
