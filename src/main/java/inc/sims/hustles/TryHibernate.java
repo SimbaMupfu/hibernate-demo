@@ -52,19 +52,45 @@ public class TryHibernate {
         workLaptop.setModel("M1");
         workLaptop.setRam(16);
 
-        Club club = new Club();
-        club.setCid(101);
-        club.setClubName("Rotary club");
-        club.setTech("Java");
-        club.setLaptops(List.of(laptop, workLaptop));
+        Laptop futureLaptop = new Laptop();
+        futureLaptop.setLaptopId(3);
+        futureLaptop.setBrand("MacBook Pro Max");
+        futureLaptop.setModel("M4");
+        futureLaptop.setRam(32);
 
-        laptop.setClub(club);
-        workLaptop.setClub(club);
+        Club club1 = new Club();
+        club1.setCid(101);
+        club1.setClubName("Rotary club");
+        club1.setTech("Java");
+
+
+        Club club2 = new Club();
+        club2.setCid(102);
+        club2.setClubName("Leo club");
+        club2.setTech("Python");
+
+        Club club3 = new Club();
+        club3.setCid(103);
+        club3.setClubName("Chess club");
+        club3.setTech("AI");
+
+        club1.setLaptops(List.of(laptop, workLaptop));
+        club2.setLaptops(List.of(workLaptop, futureLaptop));
+        club3.setLaptops(List.of(futureLaptop));
+
+        laptop.setClubs(List.of(club1, club3));
+        workLaptop.setClubs(List.of(club1, club2));
+        futureLaptop.setClubs(List.of(club2));
 
         Transaction transaction = session.beginTransaction();
         session.persist(laptop);
         session.persist(workLaptop);
-        session.persist(club);
+        session.persist(futureLaptop);
+
+        session.persist(club1);
+        session.persist(club2);
+        session.persist(club3);
+
         transaction.commit();
     }
 

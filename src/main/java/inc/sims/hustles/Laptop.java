@@ -2,6 +2,8 @@ package inc.sims.hustles;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 public class Laptop {
 
@@ -11,8 +13,8 @@ public class Laptop {
     private String brand;
     private String Model;
     private int ram;
-    @ManyToOne
-    private Club club;
+    @ManyToMany(mappedBy = "laptops")
+    private List<Club> clubs;
 
     public int getLaptopId() {
         return laptopId;
@@ -46,12 +48,12 @@ public class Laptop {
         this.ram = ram;
     }
 
-    public Club getClub() {
-        return club;
+    public List<Club> getClubs() {
+        return clubs;
     }
 
-    public void setClub(Club club) {
-        this.club = club;
+    public void setClubs(List<Club> clubs) {
+        this.clubs = clubs;
     }
 
     @Override

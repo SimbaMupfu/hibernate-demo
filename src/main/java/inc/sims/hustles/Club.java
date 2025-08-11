@@ -13,7 +13,7 @@ public class Club {
     private String clubName;
     @Column(name = "tech")
     private String tech;
-    @OneToMany(mappedBy = "club")
+    @ManyToMany
     private List<Laptop> laptops;
 
     public int getCid() {
