@@ -1,9 +1,6 @@
 package inc.sims.hustles;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Laptop {
@@ -14,6 +11,8 @@ public class Laptop {
     private String brand;
     private String Model;
     private int ram;
+    @ManyToOne
+    private Club club;
 
     public int getLaptopId() {
         return laptopId;
@@ -45,6 +44,14 @@ public class Laptop {
 
     public void setRam(int ram) {
         this.ram = ram;
+    }
+
+    public Club getClub() {
+        return club;
+    }
+
+    public void setClub(Club club) {
+        this.club = club;
     }
 
     @Override

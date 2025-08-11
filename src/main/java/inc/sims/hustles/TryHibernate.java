@@ -58,6 +58,9 @@ public class TryHibernate {
         club.setTech("Java");
         club.setLaptops(List.of(laptop, workLaptop));
 
+        laptop.setClub(club);
+        workLaptop.setClub(club);
+
         Transaction transaction = session.beginTransaction();
         session.persist(laptop);
         session.persist(workLaptop);
