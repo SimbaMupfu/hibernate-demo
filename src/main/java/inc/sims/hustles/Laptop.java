@@ -13,8 +13,6 @@ public class Laptop {
     private String brand;
     private String Model;
     private int ram;
-    @ManyToMany(mappedBy = "laptops")
-    private List<Club> clubs;
 
     public int getLaptopId() {
         return laptopId;
@@ -46,14 +44,6 @@ public class Laptop {
 
     public void setRam(int ram) {
         this.ram = ram;
-    }
-
-    public List<Club> getClubs() {
-        return clubs;
-    }
-
-    public void setClubs(List<Club> clubs) {
-        this.clubs = clubs;
     }
 
     @Override

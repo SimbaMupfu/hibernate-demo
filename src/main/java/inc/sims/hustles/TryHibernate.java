@@ -69,18 +69,8 @@ public class TryHibernate {
         club2.setClubName("Leo club");
         club2.setTech("Python");
 
-        Club club3 = new Club();
-        club3.setCid(103);
-        club3.setClubName("Chess club");
-        club3.setTech("AI");
-
         club1.setLaptops(List.of(laptop, workLaptop));
-        club2.setLaptops(List.of(workLaptop, futureLaptop));
-        club3.setLaptops(List.of(futureLaptop));
-
-        laptop.setClubs(List.of(club1, club3));
-        workLaptop.setClubs(List.of(club1, club2));
-        futureLaptop.setClubs(List.of(club2));
+        club2.setLaptops(List.of(futureLaptop));
 
         Transaction transaction = session.beginTransaction();
         session.persist(laptop);
@@ -89,7 +79,6 @@ public class TryHibernate {
 
         session.persist(club1);
         session.persist(club2);
-        session.persist(club3);
 
         transaction.commit();
     }
